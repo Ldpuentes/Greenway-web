@@ -16,9 +16,11 @@ export default function Welcome({ className = "" }) {
       
         <div className="gw-underline" aria-hidden="true"></div>
 
-     <p className="gw-tagline gw-tagline--badge">
+   <p className="gw-tagline">
   Tecnología + <span className="em">sostenibilidad</span> para impulsar tu negocio.
 </p>
+
+
 
 
         {/* contenedor para partículas sutiles */}

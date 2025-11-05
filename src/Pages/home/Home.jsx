@@ -22,9 +22,10 @@ export default function Carousel() {
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1074&auto=format&fit=crop')" }}
         >
           <div className="content">
-            <div className="name">Scotland</div>
+            <div className="name">Brokeraje internacional.</div>
             <div className="des">
-              Experience the mystical Highlands under twilight skies and misty lochs.
+              - Facilitamos transacciones seguras, acceso a mercados globales, con gestion de riesgo y cumplimiento fijo. 
+
             </div>
             <a className="seeMore" target="_blank" href="https://github.com/MDJAmin" rel="noreferrer">
               <button>See More</button>
@@ -37,9 +38,9 @@ export default function Carousel() {
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1439792675105-701e6a4ab6f0?q=80&w=1173&auto=format&fit=crop')" }}
         >
           <div className="content">
-            <div className="name">Norway</div>
+            <div className="name">Estudios del mercado e inteligencia comercial</div>
             <div className="des">
-              Chase the Northern Lights under star-lit skies along scenic fjord roads.
+              Toma de desiciones informadas; Identifica oportunidades reales de negocio y reduce riesgos de inversión.
             </div>
             <a className="seeMore" target="_blank" href="https://github.com/MDJAmin" rel="noreferrer">
               <button>See More</button>
@@ -52,9 +53,9 @@ export default function Carousel() {
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1483982258113-b72862e6cff6?q=80&w=1170&auto=format&fit=crop')" }}
         >
           <div className="content">
-            <div className="name">New Zealand</div>
+            <div className="name">Servicios financieros y garantias</div>
             <div className="des">
-              Wander dramatic, mist-laden mountain paths that feel straight out of a dream.
+              Apalancamiento para cerrar negocios ; respaldo financiero, mejorar flujo de caja y tu reputación.
             </div>
             <a className="seeMore" target="_blank" href="https://github.com/MDJAmin" rel="noreferrer">
               <button>See More</button>
