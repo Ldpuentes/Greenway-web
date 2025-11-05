@@ -1,5 +1,12 @@
+// src/components/Home/Carrusel/Carrusel.jsx
 import './Carrusel.css'
 import Carousel from './service.carrusel'
+
+// Importa desde /src/assets
+import imgScotland from '../../../assets/pc.jpg'
+import imgNorway from '../../../assets/pc.jpg'
+import imgNZ from '../../../assets/pc.jpg'
+import imgJapan from '../../../assets/pc.jpg'
 
 export default function Carrusel() {
   const { slideRef, nextRef, prevRef } = Carousel({ interval: 6000 })
@@ -7,98 +14,82 @@ export default function Carrusel() {
   return (
     <div className='container'>
       <div className='slide' ref={slideRef}>
+        {/* Slide 1 — Innovación Sostenible */}
         <div
           className='item'
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1074&auto=format&fit=crop')",
-          }}
+          style={{ backgroundImage: `url(${imgScotland})` }}
         >
           <div className='content'>
-            <div className='name'>Scotland</div>
+            <div className='name'>Innovación Sostenible</div>
             <div className='des'>
-              Experience the mystical Highlands under twilight skies and misty
-              lochs.
+              Conectamos innovación, tecnología y sostenibilidad para
+              transformar los negocios globales y generar valor económico,
+              social y ambiental.
             </div>
             <a
               className='seeMore'
               target='_blank'
-              href='https://github.com/MDJAmin'
+              href='https://tu-sitio.com'
               rel='noreferrer'
             >
-              <button>See More</button>
+              <button>Ver más</button>
             </a>
           </div>
         </div>
 
-        <div
-          className='item'
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1439792675105-701e6a4ab6f0?q=80&w=1173&auto=format&fit=crop')",
-          }}
-        >
+        {/* Slide 2 — Brokeraje Internacional */}
+        <div className='item' style={{ backgroundImage: `url(${imgNorway})` }}>
           <div className='content'>
-            <div className='name'>Norway</div>
+            <div className='name'>Brokeraje Internacional</div>
             <div className='des'>
-              Chase the Northern Lights under star-lit skies along scenic fjord
-              roads.
+              Conectamos proveedores y compradores confiables, gestionando
+              logística y pagos para transacciones seguras a escala global.
             </div>
             <a
               className='seeMore'
               target='_blank'
-              href='https://github.com/MDJAmin'
+              href='https://tu-sitio.com/servicios'
               rel='noreferrer'
             >
-              <button>See More</button>
+              <button>Ver más</button>
             </a>
           </div>
         </div>
 
-        <div
-          className='item'
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1483982258113-b72862e6cff6?q=80&w=1170&auto=format&fit=crop')",
-          }}
-        >
+        {/* Slide 3 — Inteligencia Comercial */}
+        <div className='item' style={{ backgroundImage: `url(${imgNZ})` }}>
           <div className='content'>
-            <div className='name'>New Zealand</div>
+            <div className='name'>Inteligencia Comercial</div>
             <div className='des'>
-              Wander dramatic, mist-laden mountain paths that feel straight out
-              of a dream.
+              Proveemos estudios de mercado, precios, demanda y competencia para
+              decisiones informadas y reducción de riesgos.
             </div>
             <a
               className='seeMore'
               target='_blank'
-              href='https://github.com/MDJAmin'
+              href='https://tu-sitio.com/inteligencia'
               rel='noreferrer'
             >
-              <button>See More</button>
+              <button>Ver más</button>
             </a>
           </div>
         </div>
 
-        <div
-          className='item'
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1477346611705-65d1883cee1e?q=80&w=2070&auto=format&fit=crop')",
-          }}
-        >
+        {/* Slide 4 — Alianzas Estratégicas */}
+        <div className='item' style={{ backgroundImage: `url(${imgJapan})` }}>
           <div className='content'>
-            <div className='name'>Japan</div>
+            <div className='name'>Alianzas Estratégicas</div>
             <div className='des'>
-              Discover serene mountain temples shrouded in dusk and ancient
-              forest trails.
+              Estructuramos redes y colaboraciones globales para acelerar la
+              internacionalización y el crecimiento sostenible.
             </div>
             <a
               className='seeMore'
               target='_blank'
-              href='https://github.com/MDJAmin'
+              href='https://tu-sitio.com/alianzas'
               rel='noreferrer'
             >
-              <button>See More</button>
+              <button>Ver más</button>
             </a>
           </div>
         </div>

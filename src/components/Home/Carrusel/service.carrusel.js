@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export function Carousel({ interval = 10000 } = {}) {
+export function Carousel({ interval = 5000 } = {}) {
   const slideRef = useRef(null)
   const nextRef = useRef(null)
   const prevRef = useRef(null)
@@ -9,15 +9,19 @@ export function Carousel({ interval = 10000 } = {}) {
   const timerRef = useRef(null)
 
   useEffect(() => {
-    const slide = slideRef.current
-    if (!slide) return
+    // Capturamos los nodos al inicio del efecto
+    const slideEl = slideRef.current
+    const nextEl = nextRef.current
+    const prevEl = prevRef.current
 
-    const items = () => slide.querySelectorAll('.item')
+    if (!slideEl) return
+
+    const items = () => slideEl.querySelectorAll('.item')
 
     const onNext = () => {
       const list = items()
       if (list.length > 0) {
-        slide.appendChild(list[0])
+        slideEl.appendChild(list[0])
         indexRef.current = (indexRef.current + 1) % list.length
       }
     }
@@ -25,30 +29,34 @@ export function Carousel({ interval = 10000 } = {}) {
     const onPrev = () => {
       const list = items()
       if (list.length > 0) {
-        slide.prepend(list[list.length - 1])
+        slideEl.prepend(list[list.length - 1])
         indexRef.current = (indexRef.current - 1 + list.length) % list.length
       }
     }
 
-    // autoplay SIEMPRE (sin pausa)
-    const start = () => {
-      timerRef.current = setInterval(onNext, interval)
-    }
     const stop = () => {
-      clearInterval(timerRef.current)
-      timerRef.current = null
+      if (timerRef.current != null) {
+        clearInterval(timerRef.current)
+        timerRef.current = null
+      }
     }
 
-    // botones manuales
-    nextRef.current?.addEventListener('click', onNext)
-    prevRef.current?.addEventListener('click', onPrev)
+    const start = () => {
+      stop() // por si el efecto se re-ejecuta
+      timerRef.current = window.setInterval(onNext, interval)
+    }
 
+    // listeners manuales
+    nextEl?.addEventListener('click', onNext)
+    prevEl?.addEventListener('click', onPrev)
+
+    // autoplay
     start()
 
     return () => {
       stop()
-      nextRef.current?.removeEventListener('click', onNext)
-      prevRef.current?.removeEventListener('click', onPrev)
+      nextEl?.removeEventListener('click', onNext)
+      prevEl?.removeEventListener('click', onPrev)
     }
   }, [interval])
 
