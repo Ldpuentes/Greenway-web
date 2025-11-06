@@ -1,0 +1,153 @@
+/* Fondo global y de sección: BLANCO */
+#sobre {
+  background: #ffffff; /* sección blanca, como pediste */
+  padding: 4.5rem 1rem 3.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Encabezado */
+.ns-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Grid 3 columnas (1 en mobile) */
+.ns-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ns-item {
+  grid-column: span 12;
+}
+@media (min-width: 768px) {
+  .ns-item {
+    grid-column: span 6;
+  }
+}
+@media (min-width: 1024px) {
+  .ns-item {
+    grid-column: span 4;
+  }
+}
+
+/* --- CARDS CON SUPERFICIE DE COLOR (no blancas) --- */
+:root {
+  /* superficies suaves basadas en tu paleta */
+  --card-surface-1: rgba(34, 181, 115, 0.08); /* verde suave */
+  --card-surface-2: rgba(28, 110, 164, 0.08); /* azul suave */
+  --card-surface-3: rgba(250, 204, 21, 0.08); /* highlight suave */
+  --card-border: rgba(0, 0, 0, 0.1);
+}
+
+.ns-card {
+  position: relative;
+  color: var(--gw-ink);
+  border-radius: var(--gw-radius);
+  border: 1px solid var(--card-border);
+  padding: 1.15rem 1.15rem 1rem;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+  transform: translateZ(0);
+  /* sin transform en hover, lo maneja anime.js */
+  will-change: transform;
+  overflow: hidden; /* oculta el sheen */
+}
+
+/* Asignamos colores distintos a cada card */
+.ns-item:nth-child(1) .ns-card {
+  background: var(--card-surface-1);
+}
+.ns-item:nth-child(2) .ns-card {
+  background: var(--card-surface-2);
+}
+.ns-item:nth-child(3) .ns-card {
+  background: var(--card-surface-3);
+}
+
+/* Head */
+.ns-card__head {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.ns-icon {
+  display: inline-grid;
+  place-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  background: #ffffff; /* icono sobre chip blanco para contraste */
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.ns-title {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.ns-desc {
+  margin: 0.3rem 0 0;
+  opacity: 0.9;
+}
+
+/* SHEEN (brillo en hover, controlado por anime.js) */
+.ns-sheen {
+  position: absolute;
+  top: -30%;
+  left: -40%;
+  width: 70%;
+  height: 160%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.65) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-120%) rotate(12deg);
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Botón único centrado */
+.ns-cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+.ns-btn {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  background: var(--gw-green);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(34, 181, 115, 0.22);
+  border: 1px solid transparent;
+  transition: filter 0.2s ease, transform 0.12s ease;
+}
+.ns-btn:hover {
+  filter: brightness(0.98);
+  transform: translateY(-1px);
+}
+.ns-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(28, 110, 164, 0.35);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .ns-btn {
+    transition: none !important;
+  }
+}

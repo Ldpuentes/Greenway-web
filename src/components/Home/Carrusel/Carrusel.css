@@ -33,7 +33,7 @@ body {
 /* Carrusel */
 .container {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: calc(100svh - var(--nav-h));
   overflow: hidden;
   border-radius: 0;
