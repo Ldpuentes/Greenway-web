@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export function Carousel({ interval = 5000 } = {}) {
+export function Carousel({ interval = 8000 } = {}) {
   const slideRef = useRef(null)
   const nextRef = useRef(null)
   const prevRef = useRef(null)

@@ -3,10 +3,10 @@ import './Carrusel.css'
 import Carousel from './service.carrusel'
 
 // Importa desde /src/assets
-import imgScotland from '../../../assets/pc.jpg'
-import imgNorway from '../../../assets/pc.jpg'
-import imgNZ from '../../../assets/pc.jpg'
-import imgJapan from '../../../assets/pc.jpg'
+import Innovacion from '../../../assets/Innovación.webp'
+import Brokeraje from '../../../assets/Brokeraje.webp'
+import Comercial from '../../../assets/Comercial.webp'
+import Alianzas from '../../../assets/Alianzas.webp'
 
 export default function Carrusel() {
   const { slideRef, nextRef, prevRef } = Carousel({ interval: 6000 })
@@ -15,10 +15,7 @@ export default function Carrusel() {
     <div className='container'>
       <div className='slide' ref={slideRef}>
         {/* Slide 1 — Innovación Sostenible */}
-        <div
-          className='item'
-          style={{ backgroundImage: `url(${imgScotland})` }}
-        >
+        <div className='item' style={{ backgroundImage: `url(${Innovacion})` }}>
           <div className='content'>
             <div className='name'>Innovación Sostenible</div>
             <div className='des'>
@@ -38,7 +35,7 @@ export default function Carrusel() {
         </div>
 
         {/* Slide 2 — Brokeraje Internacional */}
-        <div className='item' style={{ backgroundImage: `url(${imgNorway})` }}>
+        <div className='item' style={{ backgroundImage: `url(${Brokeraje})` }}>
           <div className='content'>
             <div className='name'>Brokeraje Internacional</div>
             <div className='des'>
@@ -57,7 +54,7 @@ export default function Carrusel() {
         </div>
 
         {/* Slide 3 — Inteligencia Comercial */}
-        <div className='item' style={{ backgroundImage: `url(${imgNZ})` }}>
+        <div className='item' style={{ backgroundImage: `url(${Comercial})` }}>
           <div className='content'>
             <div className='name'>Inteligencia Comercial</div>
             <div className='des'>
@@ -76,7 +73,7 @@ export default function Carrusel() {
         </div>
 
         {/* Slide 4 — Alianzas Estratégicas */}
-        <div className='item' style={{ backgroundImage: `url(${imgJapan})` }}>
+        <div className='item' style={{ backgroundImage: `url(${Alianzas})` }}>
           <div className='content'>
             <div className='name'>Alianzas Estratégicas</div>
             <div className='des'>
