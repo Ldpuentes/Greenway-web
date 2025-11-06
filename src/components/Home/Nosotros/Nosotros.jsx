@@ -142,7 +142,7 @@ export default function Nosotros() {
       <p className='ns-cta'>
         <a
           className='ns-btn'
-          href='/quienes-somos'
+          href='/About'
           aria-label='Ver más sobre nosotros'
         >
           Ver más

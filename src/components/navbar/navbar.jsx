@@ -48,14 +48,16 @@ export default function Navbar() {
 
           <div className="gw-menu" role="menubar" aria-label="Principal">
             <a className="gw-link" href="/" role="menuitem">Home</a>
-            <a className="gw-link" href="/about" role="menuitem">Quienes somos</a>
-            <a className="gw-link" href="#proyectos" role="menuitem">Como trabajamos</a>
-            <a className="gw-link" href="#contacto" role="menuitem">Contacto</a>
+            <a className="gw-link" href="/About" role="menuitem">Quienes Somos</a>
+            <a className="gw-link" href="/ComoTrabajamos" role="menuitem">Como Srabajamos</a>
+            <a className="gw-link" href="#servicios" role="menuitem">Productos y Servivios</a>
             <span className="gw-underline" aria-hidden="true" />
           </div>
 
           <div className="gw-actions" aria-label="Acciones">
+            <a href="/Contactanos">
             <button className="gw-cta gw-cta--primary">Contactanos</button>
+          </a>
           </div>
 
           <button className="gw-burger" aria-label="Abrir menú" aria-expanded="true" aria-controls="mobile-menu">
