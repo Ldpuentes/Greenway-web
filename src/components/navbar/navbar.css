@@ -1,23 +1,34 @@
-/* ===== Tokens ===== */
-:root{
-  --gw-green:#22b573; --gw-blue:#1c6ea4; --gw-ink:#0f172a; --gw-sand:#f5f5ef; --gw-white:#fff;
-  --gw-radius:16px; --gw-shadow:0 10px 30px rgba(0,0,0,.12);
-  --gw-nav-h: 86px; /* altura del navbar */
+/* ===== TOKENS ===== */
+:root {
+  --gw-green: #22b573;
+  --gw-blue: #1c6ea4;
+  --gw-ink: #0f172a;
+  --gw-sand: #f5f5ef;
+  --gw-white: #ffffff;
+  --gw-radius: 16px;
+  --gw-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  --gw-shadow-sm: 0 6px 24px rgba(0, 0, 0, 0.06);
+  --gw-nav-h: 86px;
+
+  --gw-grad-90: linear-gradient(90deg, var(--gw-green), var(--gw-blue));
+  --gw-grad-135: linear-gradient(135deg, var(--gw-green), var(--gw-blue));
 }
 
 /* ===== NAVBAR ===== */
-.gw-navbar{
+.gw-navbar {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: var(--gw-nav-h);
   z-index: 1000;
-  background: var(--gw-sand);      /* fondo sólido para que no se vea el slider detrás */
-  box-shadow: 0 6px 24px rgba(0,0,0,.06);
-  border-bottom: 1px solid rgba(0,0,0,.06);
+  background: var(--gw-sand);
+  box-shadow: var(--gw-shadow-sm);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* contenedor centrado y contenido alineado verticalmente */
-.gw-container{
+/* contenedor */
+.gw-container {
   max-width: 1200px;
   height: 100%;
   margin: 0 auto;
@@ -29,157 +40,243 @@
 }
 
 /* marca */
-.gw-brand { position: relative; z-index: 1; flex: 0 0 auto; }
-.gw-icon{ width:110px; height:auto; display:block; }
+.gw-brand {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+}
+.gw-icon {
+  width: 110px;
+  height: auto;
+  display: block;
+}
 
 /* menú desktop */
-.gw-menu{ display:flex; gap:24px; position:relative; }
-.gw-link{ font-weight:600; color:var(--gw-ink); text-decoration:none; padding:8px 4px; }
-.gw-link:hover{ color:var(--gw-green); }
-.gw-underline{
-  position:absolute; bottom:-6px; height:3px;
-  background:linear-gradient(90deg,var(--gw-green),var(--gw-blue));
-  width:0; opacity:0; border-radius:999px;
+.gw-menu {
+  display: flex;
+  gap: 24px;
+  position: relative;
+}
+.gw-link {
+  font-weight: 600;
+  color: var(--gw-ink);
+  text-decoration: none;
+  padding: 8px 4px;
+  position: relative;
+}
+.gw-link:hover {
+  color: var(--gw-green);
+}
+
+/* subrayado */
+.gw-underline {
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 3px;
+  width: 100%;
+  background: var(--gw-grad-90);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.gw-link:hover + .gw-underline,
+.gw-link:focus-visible + .gw-underline {
+  transform: scaleX(1);
+  opacity: 1;
 }
 
 /* acciones */
-.gw-actions{ display:flex; gap:12px; }
-.gw-cta{ padding:10px 16px; border-radius:12px; background:var(--gw-white); border:1px solid rgba(0,0,0,.1); font-weight:700; cursor:pointer; transition:.2s; }
-.gw-cta--primary{ background:linear-gradient(135deg,var(--gw-green),var(--gw-blue)); color:#fff; border:none; }
+.gw-actions {
+  display: flex;
+  gap: 12px;
+}
+.gw-cta {
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: var(--gw-white);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.gw-cta:hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+.gw-cta--primary {
+  background: var(--gw-grad-135);
+  color: #fff;
+  border: none;
+}
+.gw-cta--primary:hover {
+  filter: brightness(1.05);
+}
 
 /* burger */
-.gw-burger{
-  display:none; width:40px; height:40px; place-items:center;
-  border-radius:8px; background:var(--gw-white); border:1px solid rgba(0,0,0,.15); cursor:pointer;
+.gw-burger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--gw-white);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: var(--gw-shadow);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
 }
-.gw-burger span{ width:20px; height:2px; background:var(--gw-ink); position:relative; }
-.gw-burger span::before, .gw-burger span::after{
-  content:""; position:absolute; left:0; right:0; height:2px; background:var(--gw-ink);
+.gw-burger span {
+  width: 22px;
+  height: 2px;
+  background: var(--gw-ink);
+  position: relative;
 }
-.gw-burger span::before{ top:-6px; } .gw-burger span::after{ top:6px; }
+.gw-burger span::before,
+.gw-burger span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gw-ink);
+}
+.gw-burger span::before {
+  top: -6px;
+}
+.gw-burger span::after {
+  top: 6px;
+}
 
-/* ===== Anti-flash: overlay + panel ocultos hasta que hidrate ===== */
+/* ===== Overlay y panel móvil ===== */
 .gw-overlay,
-.gw-mobile{
+.gw-mobile {
   opacity: 0;
   pointer-events: none;
-  visibility: hidden; /* clave: que ni se vea ni ocupe layout */
-  
-  transition: opacity .45s ease, transform .55s ease; 
+  visibility: hidden;
+  transition: opacity 0.45s ease, transform 0.55s ease;
 }
 
-/* al hidratar (lo marca el JS con html.gw-hydrated) ya pueden ser visibles */
-html.gw-hydrated .gw-overlay,
-html.gw-hydrated .gw-mobile{
+/* solo el panel puede volverse visible tras hidratar; overlay permanece oculto */
+html.gw-hydrated .gw-mobile {
   visibility: visible;
 }
 
-/* Overlay (estado cerrado por defecto) */
-.gw-overlay{
-  position:fixed; inset:0;
-  background:rgba(237, 231, 231, 0.45);
+/* overlay (oculto por defecto) */
+.gw-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: none;
+  z-index: 1001;
 }
 
-/* Panel móvil (cerrado por defecto) */
-.gw-mobile{
-  position:fixed; top:0; right:0;
-  width:min(85vw,340px); height:100vh;
-  background:var(--gw-sand);
-  padding:24px; display:flex; flex-direction:column;
-  transform:translateX(100%); /* fuera de pantalla */
-  box-shadow:-15px 0 35px rgba(0,0,0,.18);
-  z-index:1001;
+/* panel móvil */
+.gw-mobile {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1002;
+  width: min(85vw, 340px);
+  height: 100vh;
+  background: var(--gw-sand);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  box-shadow: -15px 0 35px rgba(0, 0, 0, 0.18);
 }
 
-/* Estado ABIERTO: solo cuando el JS lo setea */
-html.gw-mobile-open .gw-overlay{ opacity:1; pointer-events:auto; }
-.gw-mobile[data-open="true"]{ transform:translateX(0); opacity:1; pointer-events:auto; }
+/* estado abierto */
+html.gw-mobile-open .gw-overlay {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.gw-mobile[data-open='true'] {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
 
-.gw-mobile a{ padding:14px 6px; text-decoration:none; font-weight:600; color:var(--gw-ink); border-radius:6px; }
-.gw-mobile a:hover{ background:rgba(34,181,115,.12); color:var(--gw-green); }
-.gw-mobile-footer{ margin-top:auto; display:grid; gap:10px; }
+.gw-mobile a {
+  padding: 14px 6px;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--gw-ink);
+  border-radius: 6px;
+}
+.gw-mobile a:hover {
+  background: rgba(34, 181, 115, 0.12);
+  color: var(--gw-green);
+}
+.gw-mobile-footer {
+  margin-top: auto;
+  display: grid;
+  gap: 10px;
+}
 
-/* ===== Espaciador para que el nav no tape el contenido ===== */
-.gw-nav-spacer{ height: var(--gw-nav-h); }
+/* spacer */
+.gw-nav-spacer {
+  height: var(--gw-nav-h);
+}
 
 /* ===== Responsive ===== */
-/* ====== Ajustes MOBILE para acercar la hamburguesa ====== */
-@media (max-width: 900px){
-
-  /* Altura más compacta en móvil */
-  .gw-navbar{
+@media (max-width: 900px) {
+  .gw-navbar {
     height: 72px;
   }
-  .gw-nav-spacer{
+  .gw-nav-spacer {
     height: 72px;
   }
 
-  /* Distribución: logo | espacio | burger */
-  .gw-container{
+  .gw-container {
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     width: 100%;
     max-width: 100%;
-    padding: 0 16px; /* menos padding lateral */
+    padding: 0 16px;
     gap: 10px;
   }
 
- 
-  .gw-icon{
+  .gw-icon {
     width: 82px;
-    height: auto;
   }
 
-  /* Ocultar menú y botones escritorio */
   .gw-menu,
-  .gw-actions{
+  .gw-actions {
     display: none !important;
-    pointer-events: all;
   }
 
-  /* ← HAMBURGER CORREGIDO (sin márgenes raros) */
-  .gw-burger{
+  .gw-burger {
     display: flex !important;
+    justify-self: end;
     align-items: center;
     justify-content: center;
     width: 44px;
     height: 44px;
-    background: var(--gw-white);
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 10px;
-    box-shadow: var(--gw-shadow);
-    cursor: pointer;
-    touch-action: manipulation;
-    pointer-events: auto;
-    z-index: 300; /* por encima del logo */
-    transition: background .2s, box-shadow .2s;
-  }
-
-  .gw-burger span{
-    pointer-events: none;
-    width: 22px;
-    height: 2px;
-    background: var(--gw-ink);
-    position: relative;
-  }
-  
- 
-  /* mas espacio para el boton */
-  .gw-burger {
+    margin: 0;
     padding: 0;
-    margin-left: 26vh;
+    pointer-events: auto;
+    z-index: 300;
   }
-.gw-burger span,
-.gw-burger span::before,
-.gw-burger span::after {
-  pointer-events: none;
+
+  .gw-burger span,
+  .gw-burger span::before,
+  .gw-burger span::after {
+    pointer-events: none;
+  }
 }
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .gw-overlay,
+  .gw-mobile,
+  .gw-underline,
+  .gw-cta {
+    transition: none !important;
+  }
 }
-
-
-
-
-
-
- 

@@ -1,32 +1,80 @@
 :root {
+  /* Tipografía y legibilidad */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Paleta base */
+  --color-primary: #16a34a;
+  --color-primary-light: #22c55e;
+  --color-accent: #10b981;
+  --color-dark: #0f172a;
+  --color-light: #f9fafb;
+  --color-text: #e5e7eb;
+  --color-muted: #94a3b8;
+  --color-bg: #0a0a0a;
+  --color-overlay: rgba(0, 0, 0, 0.45);
+  --color-border: rgba(255, 255, 255, 0.15);
+  --color-highlight: #facc15;
+
+  /* Tokens Green Way */
+  --gw-green: #22b573;
+  --gw-blue: #1c6ea4;
+  --gw-ink: #0f172a;
+  --gw-sand: #f5f5ef;
+  --gw-white: #fff;
+  --gw-radius: 16px;
+  --gw-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  --gw-nav-h: 86px;
+
+  /* Gradientes */
+  --gw-grad-brand-90: linear-gradient(90deg, var(--gw-green), var(--gw-blue));
+  --gw-grad-brand-135: linear-gradient(135deg, var(--gw-green), var(--gw-blue));
+  --gw-grad-text: linear-gradient(
+    90deg,
+    var(--gw-green) 0%,
+    var(--gw-blue) 100%
+  );
+  --gw-grad-overlay-v: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0) 0%,
+    rgba(15, 23, 42, 0.35) 55%,
+    rgba(15, 23, 42, 0.6) 100%
+  );
+  --gw-grad-sand: linear-gradient(180deg, #f7f7f2 0%, #ffffff 100%);
+
+  color-scheme: light dark;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+/* --------- ELEMENTOS BASE --------- */
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: var(--color-primary);
+  text-decoration: none;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--color-primary-light);
 }
-
-
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-weight: 700;
+  color: var(--color-light);
 }
 
 button {
@@ -36,15 +84,42 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-primary);
+  color: #fff;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.25s, transform 0.2s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: var(--color-primary-light);
+  transform: translateY(-1px);
+}
+button:active {
+  transform: translateY(1px);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
 }
 
+/* --------- MODO CLARO --------- */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #f9fafb;
+    --color-text: #0f172a;
+    --color-border: rgba(0, 0, 0, 0.1);
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  h1 {
+    color: var(--color-dark);
+  }
+
+  button {
+    background-color: var(--color-primary);
+    color: #fff;
+  }
+}
