@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useQuienesSomosFX } from "../../Pages/quienesSomos/quienessomos.js"; // reusamos tu hook
 import "./ComoTrabajamos.css";
+import ContactMini from "../../components/Contactanos/Contactanosmini.jsx"
 
 export default function ComoTrabajamos() {
   const rootRef = useRef(null);
@@ -171,10 +172,7 @@ export default function ComoTrabajamos() {
       </section>
 
       {/* CTA */}
-      <footer className="como-cta" data-anim="fade-up">
-        <h3>¿Activamos tu operación con seguridad y cumplimiento?</h3>
-        <a className="btn" href="#contacto">Contactar</a>
-      </footer>
+    <ContactMini/>
     </section>
   );
 }

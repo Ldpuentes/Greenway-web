@@ -1,6 +1,7 @@
 import './Home.css'
 import Carousel from '../../components/Home/Carrusel/Carrusel'
 import Nosotros from '../../components/Home/Nosotros/Nosotros'
+import ContactMini from '../../components/Contactanos/Contactanosmini.jsx'
 
 export default function Home() {
   return (
@@ -67,15 +68,9 @@ export default function Home() {
       </aside>
 
       {/* CONTACTO */}
-      <section id='contacto' aria-labelledby='contacto-heading'>
-        <h2 id='contacto-heading'>Contacto</h2>
-        <article>
-          <p>
-            Este es un <strong>article</strong> para mostrar información o un
-            formulario de contacto.
-          </p>
-        </article>
-      </section>
+     
+     <ContactMini/>
+      
     </main>
   )
 }

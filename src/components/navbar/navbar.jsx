@@ -49,8 +49,8 @@ export default function Navbar() {
           <div className="gw-menu" role="menubar" aria-label="Principal">
             <a className="gw-link" href="/" role="menuitem">Home</a>
             <a className="gw-link" href="/About" role="menuitem">Quienes Somos</a>
-            <a className="gw-link" href="/ComoTrabajamos" role="menuitem">Como Srabajamos</a>
-            <a className="gw-link" href="#servicios" role="menuitem">Productos y Servivios</a>
+            <a className="gw-link" href="/ComoTrabajamos" role="menuitem">Como Trabajamos</a>
+            <a className="gw-link" href="/ProductosServicios" role="menuitem">Productos y Servivios</a>
             <span className="gw-underline" aria-hidden="true" />
           </div>
 
@@ -75,18 +75,20 @@ export default function Navbar() {
         className="gw-mobile"
         ref={panelRef}
         aria-label="Menú móvil"
-        role="dialog"
+        role="dialog" 
         aria-modal="true"
       >
         <nav style={{ display: 'contents' }}>
           <a className="movil" href="/">Home</a>
           <a className="movil" href="/about">Quienes somos</a>
-          <a className="movil" href="#proyectos">Como trabajamos</a>
-          <a className="movil" href="#contacto">Contacto</a>
+          <a className="gw-link" href="/ComoTrabajamos" role="menuitem">Como Trabajamos</a>
+          <a className="gw-link" href="/ProductosServicios" role="menuitem">Productos y Servivios</a>
+         
         </nav>
 
         <div className="gw-mobile-footer">
-          <button className="gw-cta gw-cta--primary">Contactanos</button>
+         <a href="/Contactanos"> <button className="gw-cta gw-cta--primary">Contactanos</button>
+        </a>
         </div>
       </aside>
     </>
