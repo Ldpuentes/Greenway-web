@@ -1,7 +1,11 @@
 import './Home.css'
 import Carousel from '../../components/Home/Carrusel/Carrusel'
 import Nosotros from '../../components/Home/Nosotros/Nosotros'
+<<<<<<< HEAD
 import Servicios from '../../components/Home/Servicios/Servicios'
+=======
+import ContactMini from '../../components/Contactanos/Contactanosmini.jsx'
+>>>>>>> 8915c13ff5b8d9f78dc9080fa20920e725d89210
 
 export default function Home() {
   return (
@@ -60,15 +64,9 @@ export default function Home() {
       </aside>
 
       {/* CONTACTO */}
-      <section id='contacto' aria-labelledby='contacto-heading'>
-        <h2 id='contacto-heading'>Contacto</h2>
-        <article>
-          <p>
-            Este es un <strong>article</strong> para mostrar información o un
-            formulario de contacto.
-          </p>
-        </article>
-      </section>
+     
+     <ContactMini/>
+      
     </main>
   )
 }

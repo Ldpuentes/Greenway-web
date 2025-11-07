@@ -1,18 +1,15 @@
-// ==============================
-// File: src/pages/QuienesSomos.jsx
-// ==============================
+
 import { useRef } from 'react'
 import './quienessomos.css'
 import { useQuienesSomosFX } from '../../Pages/quienesSomos/quienessomos.js'
-
+import ContactMini from '../../components/Contactanos/Contactanosmini.jsx'
 export default function QuienesSomos() {
   const rootRef = useRef(null)
   useQuienesSomosFX(rootRef)
 
   return (
     <section ref={rootRef} className='gw-about'>
-      {/* HERO */}
-      <header className='gw-about__hero'>
+    <header className='gw-about__hero'>
         <div className='gw-about__badge'>GreenWay</div>
         <h1 className='gw-about__title'>
           Impulsamos <span>comercio seguro</span> y{' '}
@@ -128,12 +125,9 @@ export default function QuienesSomos() {
       </section>
 
       {/* CTA */}
-      <footer className='gw-about__cta' data-anim='fade-up'>
-        <h3>¿Listo para expandirte con seguridad?</h3>
-        <a className='btn btn--primary' href='#contacto'>
-          Hablemos
-        </a>
-      </footer>
+      
+      <ContactMini/>
+      
     </section>
   )
 }

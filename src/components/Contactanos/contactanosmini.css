@@ -1,0 +1,170 @@
+:root{
+  --gw-green:#22b573;
+  --gw-blue:#1c6ea4;
+  --gw-ink:#0f172a;
+  --gw-sand:#f5f5ef;
+  --gw-white:#fff;
+  --gw-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+/* ===== Sección ===== */
+.contact-mini{
+  position: relative;
+  width: 100%;
+  padding: clamp(36px, 6vw, 70px) 20px;
+  background: var(--gw-sand);
+  overflow: clip;
+}
+
+/* Blobs decorativos */
+.cm-blob{
+  position: absolute;
+  width: 38vw; height: 38vw; max-width: 520px; max-height: 520px;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: .18;
+  z-index: 0;
+}
+.cm-blob--green{ background: radial-gradient(circle at 40% 40%, #22b573, transparent 60%); top: -10%; left: -10%; }
+.cm-blob--blue{  background: radial-gradient(circle at 60% 40%, #1c6ea4, transparent 60%); bottom: -12%; right: -12%; }
+
+/* Card tipo “glass” */
+.cm-wrap{
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  width: min(920px, 96vw);
+  padding: clamp(18px, 3vw, 28px);
+  background: rgba(255,255,255,.7);
+  backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 18px;
+  box-shadow: var(--gw-shadow);
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;  /* texto | form */
+  gap: clamp(14px, 3vw, 24px);
+}
+
+.cm-head{
+  display:flex; flex-direction:column; gap:8px;
+  align-self:center;
+}
+.cm-badge{
+  align-self:flex-start;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(34,181,115,.12);
+  color: var(--gw-green);
+  font-weight: 800;
+  font-size: .9rem;
+}
+.cm-head h2{
+  margin: 0;
+  font-size: clamp(22px, 4vw, 36px);
+  color: var(--gw-ink);
+  line-height: 1.15;
+}
+.cm-head h2 span{ color: var(--gw-blue); }
+.cm-head p{
+  margin: 2px 0 0;
+  opacity: .85;
+}
+
+/* Form compacto */
+.cm-form{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  align-content: start;
+}
+.cm-input{
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--gw-white);
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 12px;
+  transition: .2s;
+}
+.cm-input:focus-within{
+  border-color: var(--gw-green);
+  box-shadow: 0 0 0 2px rgba(34,181,115,.25);
+}
+.cm-ico{ font-size: 18px; }
+
+.cm-input input{
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: var(--gw-ink);
+  cursor: pointer;
+}
+
+.cm-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--gw-green), var(--gw-blue));
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .25s, box-shadow .25s;
+  box-shadow: var(--gw-shadow);
+}
+.cm-btn:hover{ transform: translateY(-2px); }
+.cm-arrow{ transition: transform .25s; }
+.cm-btn:hover .cm-arrow{ transform: translateX(3px); }
+
+.cm-note{
+  font-size: .9rem;
+  opacity: .7;
+  text-align: center;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 860px){
+  .cm-wrap{ grid-template-columns: 1fr; text-align: center; }
+  .cm-badge{ align-self: center; }
+}
+@media (max-width: 520px){
+  .cm-input{ grid-template-columns: 22px 1fr; }
+}
+/* HERO visual */
+
+
+/* Tarjetas con imagen */
+.ps-card{
+  background: var(--gw-white);
+  border-radius: 18px;
+  overflow:hidden;
+  box-shadow: var(--gw-shadow);
+  display:flex;
+  flex-direction:column;
+  transition:.35s ease;
+}
+.ps-card:hover{
+  transform: translateY(-6px) scale(1.02);
+}
+.ps-card-img{
+  width:100%;
+  height:150px;
+  background-size:cover;
+  background-position:center;
+}
+.ps-card-content{
+  padding:18px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.ps-card-content h3{ margin:0; font-size:1.25rem; }
+.ps-card-content p{ margin:0; opacity:.9; font-size:.96rem; }
+.ps-card-content ul{ margin:6px 0 0 18px; }
+.ps-card-content li{ margin:3px 0; font-size:.88rem; }

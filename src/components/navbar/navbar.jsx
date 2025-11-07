@@ -48,14 +48,16 @@ export default function Navbar() {
 
           <div className="gw-menu" role="menubar" aria-label="Principal">
             <a className="gw-link" href="/" role="menuitem">Home</a>
-            <a className="gw-link" href="/about" role="menuitem">Quienes somos</a>
-            <a className="gw-link" href="#proyectos" role="menuitem">Como trabajamos</a>
-            <a className="gw-link" href="#contacto" role="menuitem">Contacto</a>
+            <a className="gw-link" href="/About" role="menuitem">Quienes Somos</a>
+            <a className="gw-link" href="/ComoTrabajamos" role="menuitem">Como Trabajamos</a>
+            <a className="gw-link" href="/ProductosServicios" role="menuitem">Productos y Servivios</a>
             <span className="gw-underline" aria-hidden="true" />
           </div>
 
           <div className="gw-actions" aria-label="Acciones">
+            <a href="/Contactanos">
             <button className="gw-cta gw-cta--primary">Contactanos</button>
+          </a>
           </div>
 
           <button className="gw-burger" aria-label="Abrir menú" aria-expanded="true" aria-controls="mobile-menu">
@@ -73,18 +75,20 @@ export default function Navbar() {
         className="gw-mobile"
         ref={panelRef}
         aria-label="Menú móvil"
-        role="dialog"
+        role="dialog" 
         aria-modal="true"
       >
         <nav style={{ display: 'contents' }}>
           <a className="movil" href="/">Home</a>
           <a className="movil" href="/about">Quienes somos</a>
-          <a className="movil" href="#proyectos">Como trabajamos</a>
-          <a className="movil" href="#contacto">Contacto</a>
+          <a className="gw-link" href="/ComoTrabajamos" role="menuitem">Como Trabajamos</a>
+          <a className="gw-link" href="/ProductosServicios" role="menuitem">Productos y Servivios</a>
+         
         </nav>
 
         <div className="gw-mobile-footer">
-          <button className="gw-cta gw-cta--primary">Contactanos</button>
+         <a href="/Contactanos"> <button className="gw-cta gw-cta--primary">Contactanos</button>
+        </a>
         </div>
       </aside>
     </>
