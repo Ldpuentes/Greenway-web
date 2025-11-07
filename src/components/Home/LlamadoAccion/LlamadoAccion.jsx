@@ -22,7 +22,7 @@ export default function LlamadoAccion() {
     >
       <div className='cta-inner'>
         <h2 id='cta-title' className='cta-title'>
-          Impulsa tu operación con soluciones Fastway
+          Impulsa tu operación con soluciones Green Way
         </h2>
         <p className='cta-sub'>
           Integra tus procesos, optimiza tu cadena y alcanza nuevos niveles de
