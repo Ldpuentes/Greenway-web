@@ -1,11 +1,8 @@
 import './Home.css'
 import Carousel from '../../components/Home/Carrusel/Carrusel'
 import Nosotros from '../../components/Home/Nosotros/Nosotros'
-<<<<<<< HEAD
 import Servicios from '../../components/Home/Servicios/Servicios'
-=======
 import ContactMini from '../../components/Contactanos/Contactanosmini.jsx'
->>>>>>> 8915c13ff5b8d9f78dc9080fa20920e725d89210
 
 export default function Home() {
   return (
@@ -64,9 +61,8 @@ export default function Home() {
       </aside>
 
       {/* CONTACTO */}
-     
-     <ContactMini/>
-      
+
+      <ContactMini />
     </main>
   )
 }
