@@ -1,0 +1,302 @@
+/* ================================
+   VARIABLES GLOBALES / FALLBACKS
+   ================================ */
+:root {
+  --svc-primary: var(--color-primary, #16a34a);
+  --svc-primary-contrast: var(--color-on-primary, #ffffff);
+  --svc-text: var(--color-text, #111827);
+  --svc-muted: var(--color-muted, #4b5563);
+  --svc-surface: var(--color-surface, #ffffff);
+  --svc-card: var(--color-card, #fcfcfd);
+
+  --svc-radius: var(--radius, 16px);
+
+  /* Sombras en capas para efecto 3D */
+  --svc-shadow-ambient: 0 18px 35px rgba(0, 0, 0, 0.1);
+  --svc-shadow-elev: 0 8px 18px rgba(0, 0, 0, 0.08);
+  --svc-shadow-contact: 0 1px 0 rgba(15, 23, 42, 0.08);
+
+  /* Borde/outline */
+  --svc-border: 1px solid rgba(2, 6, 23, 0.08);
+  --svc-outline: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+/* ================================
+   RESET Y BASE
+   ================================ */
+.svc * {
+  box-sizing: border-box;
+}
+
+.svc img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ================================
+   SECCIÓN PRINCIPAL
+   ================================ */
+.svc {
+  background: var(--svc-surface);
+  color: var(--svc-text);
+  padding: clamp(24px, 4vw, 56px) 0;
+  overflow-x: hidden;
+}
+
+/* ================================
+   HEADER CENTRADO (anime.js lo revela)
+   ================================ */
+.svc-header {
+  max-width: 1120px;
+  margin: 0 auto clamp(20px, 4vw, 48px);
+  padding: 0 clamp(16px, 3vw, 24px);
+  opacity: 0;
+  text-align: center;
+}
+
+.svc-header h2 {
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.svc-header .svc-intro {
+  color: var(--svc-muted);
+  max-width: 60ch;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ================================
+   GRUPOS Y PERSPECTIVA GLOBAL
+   ================================ */
+.svc-group {
+  max-width: 1120px;
+  margin: clamp(24px, 4vw, 40px) auto 0;
+  padding: 0 clamp(16px, 3vw, 24px);
+  perspective: 1200px; /* clave para el tilt 3D */
+}
+
+.svc-group > h3 {
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 700;
+  margin-bottom: clamp(12px, 2vw, 20px);
+  text-transform: uppercase;
+  color: var(--svc-primary);
+}
+
+/* ================================
+   CARD 3D (imagen + copy)
+   ================================ */
+.svc-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: clamp(16px, 3vw, 28px);
+  margin: clamp(24px, 4vw, 40px) 0;
+
+  padding: clamp(18px, 3.2vw, 34px);
+  border-radius: var(--svc-radius);
+  background: var(--svc-card);
+
+  /* Borde y sutil outline para cortes definidos */
+  border: var(--svc-border);
+  outline: 0.5px solid rgba(255, 255, 255, 0.6);
+  outline-offset: -1px;
+
+  /* Sombras en capas para volumen */
+  box-shadow: var(--svc-shadow-ambient), var(--svc-shadow-elev),
+    var(--svc-shadow-contact);
+
+  /* 3D */
+  transform-style: preserve-3d;
+  transition: transform 280ms ease, box-shadow 280ms ease, filter 280ms ease;
+}
+
+/* Brillo/“gloss” superior muy sutil (da sensación de material) */
+.svc-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.15) 28%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.35;
+  transform: translateZ(1px);
+}
+
+/* Sombra proyectada extra (separa del fondo) */
+.svc-row::after {
+  content: '';
+  position: absolute;
+  inset: 14px -6px -12px -6px; /* más ancha por los lados */
+  border-radius: calc(var(--svc-radius) + 6px);
+  pointer-events: none;
+  filter: blur(18px);
+  background: radial-gradient(
+    120% 60% at 50% 10%,
+    rgba(0, 0, 0, 0.08),
+    transparent 65%
+  );
+  transform: translateZ(-2px);
+  opacity: 0.75;
+}
+
+.svc-row:hover,
+.svc-row:focus-within {
+  transform: translateY(-6px) rotateX(0.7deg) rotateY(-0.6deg);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.16), 0 12px 26px rgba(0, 0, 0, 0.1),
+    var(--svc-shadow-contact);
+}
+
+/* Reduce motion: desactiva tilt si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  .svc-row,
+  .svc-row:hover,
+  .svc-row:focus-within {
+    transform: none !important;
+    transition: box-shadow 280ms ease;
+  }
+}
+
+@media (min-width: 900px) {
+  .svc-row {
+    grid-template-columns: 0.9fr 1.2fr;
+  }
+  .svc-row.reverse .svc-media {
+    order: 2;
+  }
+  .svc-row.reverse .svc-copy {
+    order: 1;
+  }
+}
+
+/* ================================
+   IMAGEN — mantiene proporción, “encajada”
+   ================================ */
+.svc-media {
+  border-radius: calc(var(--svc-radius) - 4px);
+  overflow: hidden;
+  position: relative;
+  background: #f3f4f6;
+
+  aspect-ratio: 4 / 3;
+  width: 100%;
+
+  /* levanta un poco la imagen respecto al fondo de la card */
+  transform: translateZ(2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* La animación de entrada de anime.js actúa sobre la IMG */
+.svc-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0; /* anime.js la anima desde 0 */
+  transition: transform 380ms ease;
+}
+
+.svc-media:hover img {
+  transform: scale(1.035);
+}
+
+@media (min-width: 1100px) {
+  .svc-media {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* ================================
+   TEXTO (anime.js lo anima)
+   ================================ */
+.svc-copy {
+  opacity: 0;
+  transform: translateZ(2px);
+}
+
+.svc-copy h4 {
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  color: var(--svc-text);
+  text-shadow: 0 0.5px 0 rgba(255, 255, 255, 0.6); /* micro relieve */
+}
+
+.svc-pre {
+  color: var(--svc-muted);
+  max-width: 60ch;
+  line-height: 1.55;
+  font-size: 1rem;
+}
+
+/* ================================
+   CTA FINAL
+   ================================ */
+.svc-nav {
+  text-align: center;
+  margin-top: clamp(32px, 4vw, 56px);
+}
+
+.svc-cta {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: calc(var(--svc-radius) - 8px);
+  text-decoration: none;
+  font-weight: 600;
+  background: var(--svc-primary);
+  color: var(--svc-primary-contrast);
+  border: 2px solid var(--svc-primary);
+  transition: transform 220ms ease, filter 220ms ease;
+  transform: translateZ(3px);
+}
+
+.svc-cta:hover {
+  filter: brightness(1.07);
+  transform: translateY(-2px) translateZ(3px);
+}
+
+/* ================================
+   MODO OSCURO (opcional por clase)
+   ================================ */
+.theme-dark .svc {
+  background: #0b1220;
+  color: #e5e7eb;
+}
+.theme-dark .svc-row {
+  background: #0f172a;
+  border-color: rgba(148, 163, 184, 0.14);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.45), 0 12px 26px rgba(0, 0, 0, 0.3),
+    0 1px 0 rgba(0, 0, 0, 0.6);
+}
+.theme-dark .svc-row::before {
+  opacity: 0.18;
+}
+.theme-dark .svc-media {
+  background: #0b1220;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+.theme-dark .svc-pre {
+  color: #a3aed0;
+}

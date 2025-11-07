@@ -1,6 +1,7 @@
 import './Home.css'
 import Carousel from '../../components/Home/Carrusel/Carrusel'
 import Nosotros from '../../components/Home/Nosotros/Nosotros'
+import Servicios from '../../components/Home/Servicios/Servicios'
 
 export default function Home() {
   return (
@@ -17,16 +18,8 @@ export default function Home() {
 
       {/* SERVICIOS */}
       <section id='servicios' aria-labelledby='servicios-heading'>
-        <h2 id='servicios-heading'>Servicios</h2>
         <article>
-          <p>
-            Este es un <strong>article</strong> para un servicio individual.
-          </p>
-        </article>
-        <article>
-          <p>
-            Otro <strong>article</strong> para otro servicio.
-          </p>
+          <Servicios />
         </article>
       </section>
 
