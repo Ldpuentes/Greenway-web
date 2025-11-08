@@ -1,20 +1,40 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useQuienesSomosFX } from '../../Pages/quienesSomos/quienessomos.js'
 import './contactanos.css'
 import Brokerajew from '../../assets/Brokerajew.png'
+import { enviarFormulario } from './contactService.js'
+import Toast from './Toast.jsx'
 
 export default function Contactanos() {
   const ref = useRef(null)
   useQuienesSomosFX(ref)
 
-  const handleSubmit = e => {
+  const [mensajeSistema, setMensajeSistema] = useState('')
+  const [enviando, setEnviando] = useState(false)
+
+  const handleSubmit = async e => {
     e.preventDefault()
-    console.log('Formulario enviado ✅')
+    setMensajeSistema('')
+    setEnviando(true)
+
+    const formData = new FormData(e.target)
+    const data = Object.fromEntries(formData.entries())
+
+    // enviar al backend
+    const respuesta = await enviarFormulario(data)
+    setEnviando(false)
+
+    if (respuesta.ok) {
+      setMensajeSistema(respuesta.message)
+      e.target.reset()
+    } else {
+      setMensajeSistema(respuesta.message || 'Error al guardar')
+    }
   }
 
   return (
     <section className='contact' id='contacto' ref={ref}>
-      {/* Background decor */}
+      {/* Fondo decorativo */}
       <div className='contact-bg' aria-hidden='true' />
 
       {/* Encabezado */}
@@ -26,20 +46,21 @@ export default function Contactanos() {
         <p>
           Cuéntanos brevemente tu necesidad: operamos con enfoque en
           <strong> transacciones seguras</strong>,{' '}
-          <strong>acceso a mercados</strong>,<strong> gestión de riesgo</strong>{' '}
+          <strong>acceso a mercados</strong>, <strong>gestión de riesgo</strong>{' '}
           y <strong>cumplimiento</strong>.
         </p>
       </header>
 
-      {/* Layout 2 columnas (form + panel visual) */}
+      {/* Layout 2 columnas */}
       <div className='contact-grid'>
-        {/* FORM */}
+        {/* FORMULARIO */}
         <form
           className='contact-form'
           onSubmit={handleSubmit}
           data-anim='fade-left'
         >
           <div className='form-grid'>
+            {/* Nombre */}
             <div className='field'>
               <label htmlFor='nombre'>Nombre completo</label>
               <div className='input-wrap'>
@@ -54,6 +75,7 @@ export default function Contactanos() {
               </div>
             </div>
 
+            {/* Empresa */}
             <div className='field'>
               <label htmlFor='empresa'>Empresa / Organización</label>
               <div className='input-wrap'>
@@ -62,11 +84,13 @@ export default function Contactanos() {
                   id='empresa'
                   name='empresa'
                   type='text'
+                  required
                   placeholder='Ej: Impresistem'
                 />
               </div>
             </div>
 
+            {/* Email */}
             <div className='field'>
               <label htmlFor='email'>Correo electrónico</label>
               <div className='input-wrap'>
@@ -81,6 +105,7 @@ export default function Contactanos() {
               </div>
             </div>
 
+            {/* Teléfono */}
             <div className='field'>
               <label htmlFor='telefono'>Número de teléfono</label>
               <div className='input-wrap'>
@@ -89,43 +114,72 @@ export default function Contactanos() {
                   id='telefono'
                   name='telefono'
                   type='tel'
+                  required
                   placeholder='+57 300 000 0000'
                 />
               </div>
             </div>
 
+            {/* Select Feria (origen) */}
+            <div className='field'>
+              <label htmlFor='origen'>Feria</label>
+              <div className='input-wrap'>
+                <span className='i'>🎪</span>
+                <select id='origen' name='origen' defaultValue=''>
+                  <option value='' disabled>
+                    Selecciona ubicación
+                  </option>
+                  <option value='Miami'>Miami</option>
+                  <option value='Cartagena'>Cartagena</option>
+                  <option value='Medellín'>Medellín</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Mensaje */}
             <div className='field field-full'>
-              <label htmlFor='mensaje'>Mensaje breve</label>
+              <label htmlFor='mensaje'>
+                Mensaje breve (máximo 500 caracteres)
+              </label>
               <div className='input-wrap text'>
                 <span className='i'>📝</span>
                 <textarea
                   id='mensaje'
                   name='mensaje'
                   rows='4'
+                  maxLength='500'
+                  required
                   placeholder='Cuéntanos en pocas líneas...'
                 />
               </div>
             </div>
           </div>
 
+          {/* Botón de envío */}
           <button
             type='submit'
             className='btn-send'
             aria-label='Enviar mensaje'
+            disabled={enviando}
           >
-            Enviar mensaje
+            {enviando ? 'Enviando...' : 'Enviar mensaje'}
           </button>
-          <p className='mini-note'>
-            Te respondemos en menos de 24 horas hábiles.
-          </p>
+
+          {/* Toast flotante */}
+          {mensajeSistema && (
+            <Toast
+              message={mensajeSistema}
+              type={mensajeSistema.includes('éxito') ? 'ok' : 'error'}
+              onClose={() => setMensajeSistema('')}
+            />
+          )}
         </form>
 
-        {/* PANEL VISUAL + INFO */}
+        {/* PANEL VISUAL */}
         <aside className='contact-aside' aria-label='Información de contacto'>
           <div className='aside-card' data-anim='pop'>
             <div
               className='aside-hero'
-              // Reemplaza por heroImg si importas tu imagen local
               style={{
                 backgroundImage: `url(${Brokerajew})`,
               }}
@@ -151,7 +205,7 @@ export default function Contactanos() {
                   <span className='cc-ico'>📍</span>
                   <div>
                     <strong>Ubicación</strong>
-                    <p>Estados Unidos Miami -Florida </p>
+                    <p>Estados Unidos Miami - Florida</p>
                   </div>
                 </div>
               </div>
