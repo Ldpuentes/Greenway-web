@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import {
   initCTAAnimation,
   bindCTAButtonHover,
@@ -28,9 +29,11 @@ export default function LlamadoAccion() {
           Integra tus procesos, optimiza tu cadena y alcanza nuevos niveles de
           eficiencia.
         </p>
-        <a href='#contacto' className='cta-btn'>
+
+        {/* ✅ Cambiado a Link para navegación React Router */}
+        <Link to='/contactanos' className='cta-btn'>
           Contáctanos
-        </a>
+        </Link>
       </div>
     </aside>
   )

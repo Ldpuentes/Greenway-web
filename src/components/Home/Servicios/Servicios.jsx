@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import initServiciosAnimations from './Servicios.service'
 import './Servicios.css'
 
@@ -9,12 +10,20 @@ import plImg from '../../../assets/4pl.webp'
 import devImg from '../../../assets/desarrollo.webp'
 
 export default function Servicios() {
+  const rootRef = useRef(null)
+
   useEffect(() => {
-    initServiciosAnimations()
+    const rootEl = rootRef.current
+    if (!rootEl) return
+    const cleanup = initServiciosAnimations(rootEl)
+    return () => {
+      // limpieza segura con referencia local
+      if (typeof cleanup === 'function') cleanup()
+    }
   }, [])
 
   return (
-    <section className='svc' aria-labelledby='svc-title'>
+    <section ref={rootRef} className='svc' aria-labelledby='svc-title'>
       {/* Header centrado */}
       <header className='svc-header centered'>
         <h2 id='svc-title'>Productos y Servicios</h2>
@@ -116,9 +125,9 @@ export default function Servicios() {
 
       {/* Botón único centrado */}
       <nav className='svc-nav' aria-label='Explorar más'>
-        <a className='svc-cta svc-cta--primary' href='/servicios'>
+        <Link className='svc-cta svc-cta--primary' to='/productosservicios'>
           Ver más
-        </a>
+        </Link>
       </nav>
     </section>
   )

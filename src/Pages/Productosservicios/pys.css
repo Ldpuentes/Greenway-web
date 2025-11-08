@@ -1,104 +1,265 @@
-:root{
-  --gw-green:#22b573;
-  --gw-blue:#1c6ea4;
-  --gw-ink:#0f172a;
-  --gw-sand:#f5f5ef;
-  --gw-white:#fff;
-  --gw-shadow:0 10px 30px rgba(0,0,0,.12);
-  --ps-br:18px;
+:root {
+  --gw-green: #22b573;
+  --gw-blue: #1c6ea4;
+  --gw-ink: #0f172a;
+  --gw-sand: #f5f5ef;
+  --gw-white: #fff;
+  --gw-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  --ps-br: 18px;
+
+  /* Degradado corporativo para títulos y bandas */
+  --brand-primary: #2cb6c0;
+  --brand-secondary: #1e73b6;
+  --brand-dark: #0b3d6e;
+  --brand-gradient: linear-gradient(
+    90deg,
+    var(--brand-primary) 0%,
+    var(--brand-secondary) 50%,
+    var(--brand-dark) 100%
+  );
+}
+
+/* ==== Utilidad: texto con degradado ==== */
+.is-gradient-text {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 /* ==== Sección base ==== */
-.ps-section{
-  width:100%;
+.ps-section {
+  width: 100%;
   background: var(--gw-sand);
   color: var(--gw-ink);
   padding: clamp(56px, 7vw, 110px) 24px;
 }
 
 /* ==== HERO ==== */
-.ps-hero{
-  max-width: 1100px; margin: 0 auto 18px; text-align: center;
+.ps-hero {
+  max-width: 1100px;
+  margin: 0 auto 18px;
+  text-align: center;
 }
-.ps-badge{
-  display:inline-block; padding:6px 12px; border-radius:999px;
-  background: rgba(34,181,115,.12); color: var(--gw-green); font-weight:800; margin-bottom:8px;
+.ps-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(34, 181, 115, 0.12);
+  color: var(--gw-green);
+  font-weight: 800;
+  margin-bottom: 8px;
 }
-.ps-hero h1{
-  font-size: clamp(30px, 4.4vw, 56px); line-height:1.08; margin: 0;
+.ps-hero h1 {
+  font-size: clamp(30px, 4.4vw, 56px);
+  line-height: 1.08;
+  margin: 0;
 }
-.ps-hero h1 span{ color: var(--gw-blue); }
-.ps-hero p{
-  max-width: 820px; margin: 12px auto 0; opacity:.9;
+.ps-hero h1 span {
+  /* el span queda dentro del degradado general; puedes dejarlo si quieres azul sólido */
+  color: inherit;
+}
+.ps-hero p {
+  max-width: 820px;
+  margin: 12px auto 0;
+  opacity: 0.9;
 }
 
 /* ==== GRID LÍNEAS ==== */
-.ps-lines{ max-width: 1150px; margin: 6px auto 18px; }
-.ps-grid{
-  display:grid; grid-template-columns: repeat(4,1fr); gap: 14px;
+.ps-lines {
+  max-width: 1150px;
+  margin: 6px auto 18px;
 }
-.ps-card{
+.ps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.ps-card {
   background: var(--gw-white);
   border: 1px solid #0001;
   border-radius: var(--ps-br);
   box-shadow: var(--gw-shadow);
   padding: 16px 16px 14px;
-  display:flex; flex-direction:column; gap:10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.ps-card-head{ display:flex; align-items:center; gap:10px; }
-.ps-card h3{ margin: 0; font-size: 1.1rem; }
-.ps-dot{
-  width: 14px; height: 14px; border-radius: 50%;
+.ps-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+.ps-lead {
+  margin: 0;
+  opacity: 0.88;
+}
+.ps-list {
+  margin: 2px 0 0 16px;
+  color: #444;
+}
+.ps-list li {
+  margin: 4px 0;
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+}
+
+/* ==== ENTREGABLES (si lo usas en otra sección) ==== */
+.ps-deliver {
+  max-width: 1100px;
+  margin: 6px auto;
+}
+.ps-deliver h2 {
+  text-align: center;
+  margin: 0 0 10px;
+}
+.ps-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.ps-mini {
+  background: var(--gw-white);
+  border: 1px solid #0001;
+  border-radius: 14px;
+  box-shadow: var(--gw-shadow);
+  padding: 14px;
+}
+.ps-mini h4 {
+  margin: 0 0 6px;
+}
+
+/* ==== SHOWCASE DETALLADO (productos/servicios) ==== */
+.ps-showcase {
+  max-width: 1100px;
+  margin: 20px auto 10px;
+}
+.ps-showcase h2 {
+  text-align: center;
+  font-size: clamp(22px, 3.2vw, 30px);
+  margin: 10px 0 24px;
+}
+
+/* Filas alternadas con imagen + texto */
+.ps-row {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 46px;
+}
+.ps-row.reverse {
+  direction: rtl; /* truco para alternar sin duplicar CSS */
+}
+.ps-row.reverse .ps-copy {
+  direction: ltr;
+}
+
+/* Media + sombras */
+.ps-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(10, 34, 68, 0.12);
+}
+
+/* Copys robustos */
+.ps-copy h3 {
+  margin: 0 0 10px;
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  font-weight: 900;
+  color: #0b3d6e; /* brand-dark */
+}
+.ps-copy p {
+  margin: 0 0 10px;
+  line-height: 1.65;
+  color: #0f172a;
+  opacity: 0.95;
+}
+
+/* Bullets de features */
+.ps-bullets {
+  margin: 8px 0 0 18px;
+  color: #334155;
+}
+.ps-bullets li {
+  margin: 4px 0;
+}
+
+/* ==== Banda con fondo degradado para contraste ==== */
+.ps-band {
+  margin: 34px auto 28px;
+  max-width: 1100px;
+  border-radius: 18px;
+  background: var(--brand-gradient);
+  color: #fff;
+  padding: clamp(18px, 3.5vw, 28px);
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(10, 34, 68, 0.15);
+}
+.ps-band h3 {
+  margin: 0 0 6px;
+  font-size: clamp(1rem, 2.4vw, 1.35rem);
+  font-weight: 900;
+}
+.ps-band p {
+  margin: 0;
+  opacity: 0.97;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+/* ==== CTA (si la usas) ==== */
+.ps-cta {
+  text-align: center;
+  padding: 16px 0 2px;
+}
+.ps-btn {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 12px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 900;
   background: linear-gradient(135deg, var(--gw-green), var(--gw-blue));
-  box-shadow: 0 0 0 3px rgba(34,181,115,.12);
+  box-shadow: var(--gw-shadow);
+  transition: transform 0.25s;
 }
-.ps-dot--green{ background: var(--gw-green); }
-.ps-dot--blue{ background: var(--gw-blue); }
-.ps-dot--ink{ background: var(--gw-ink); }
-
-.ps-lead{ margin: 0; opacity:.88; }
-.ps-list{ margin: 2px 0 0 16px; color:#444; }
-.ps-list li{ margin: 4px 0; }
-
-.ps-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top: 6px; }
-.ps-tags span{
-  font-size: .82rem; padding: 6px 10px; border-radius: 999px;
-  background: #fafafa; border: 1px solid #0001;
+.ps-btn:hover {
+  transform: translateY(-2px);
 }
-
-/* ==== ENTREGABLES ==== */
-.ps-deliver{ max-width: 1100px; margin: 6px auto; }
-.ps-deliver h2{ text-align:center; margin: 0 0 10px; }
-.ps-cards{
-  display:grid; grid-template-columns: repeat(4,1fr); gap: 12px;
-}
-.ps-mini{
-  background: var(--gw-white); border:1px solid #0001; border-radius: 14px;
-  box-shadow: var(--gw-shadow); padding: 14px;
-}
-.ps-mini h4{ margin: 0 0 6px; }
-
-/* ==== CTA ==== */
-.ps-cta{ text-align:center; padding: 16px 0 2px; }
-.ps-btn{
-  display:inline-block; padding: 12px 18px; border-radius: 12px; color:#fff; text-decoration:none; font-weight:900;
-  background: linear-gradient(135deg, var(--gw-green), var(--gw-blue)); box-shadow: var(--gw-shadow);
-  transition: transform .25s;
-}
-.ps-btn:hover{ transform: translateY(-2px); }
 
 /* ==== Responsive ==== */
-@media (max-width: 1100px){
-  .ps-grid{ grid-template-columns: repeat(2,1fr); }
-  .ps-cards{ grid-template-columns: repeat(2,1fr); }
+@media (max-width: 1100px) {
+  .ps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ps-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
-@media (max-width: 640px){
-  .ps-grid{ grid-template-columns: 1fr; }
-  .ps-cards{ grid-template-columns: 1fr; }
+@media (max-width: 980px) {
+  .ps-row,
+  .ps-row.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    text-align: left;
+  }
+  .ps-media img {
+    margin-bottom: 12px;
+  }
 }
-.hero-img{
-  width:100%;
-  height:auto;
-  display:block;
-  border-radius:18px;
+@media (max-width: 640px) {
+  .ps-grid {
+    grid-template-columns: 1fr;
+  }
+  .ps-cards {
+    grid-template-columns: 1fr;
+  }
 }

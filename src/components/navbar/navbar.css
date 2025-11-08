@@ -280,3 +280,34 @@ html.gw-mobile-open .gw-overlay {
     transition: none !important;
   }
 }
+/* ===== Link activo con degradado tornasol ===== */
+.gw-link.active {
+  background: var(--gw-grad-90);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: 700;
+  position: relative;
+}
+
+.gw-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  border-radius: 999px;
+  background: var(--gw-grad-90);
+}
+
+/* Para el menú móvil */
+.movil.active {
+  background: var(--gw-grad-90);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: 700;
+}

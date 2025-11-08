@@ -87,9 +87,12 @@
   padding: 1.15rem 1.15rem 1rem;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
   transform: translateZ(0);
-  /* sin transform en hover, lo maneja anime.js */
   will-change: transform;
-  overflow: hidden; /* oculta el sheen */
+  overflow: hidden;
+
+  /* Estado inicial para animación */
+  opacity: 0;
+  transform: translateY(26px) scale(0.98);
 }
 
 /* Asignamos colores distintos a cada card */
@@ -184,5 +187,10 @@
 @media (prefers-reduced-motion: reduce) {
   .ns-btn {
     transition: none !important;
+  }
+  .ns-card {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
 }

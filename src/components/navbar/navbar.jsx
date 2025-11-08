@@ -1,5 +1,10 @@
 import { useLayoutEffect, useRef } from 'react'
-import { initNavbarAnimations, createMobileTimelines, bindMobileInteractions } from './navbar.js'
+import { useLocation, Link } from 'react-router-dom'
+import {
+  initNavbarAnimations,
+  createMobileTimelines,
+  bindMobileInteractions,
+} from './navbar.js'
 import './navbar.css'
 import logo from '../../assets/greenway.png'
 
@@ -7,6 +12,7 @@ export default function Navbar() {
   const navRef = useRef(null)
   const overlayRef = useRef(null)
   const panelRef = useRef(null)
+  const location = useLocation()
 
   useLayoutEffect(() => {
     const navEl = navRef.current
@@ -14,22 +20,21 @@ export default function Navbar() {
     const panelEl = panelRef.current
     if (!navEl || !overlayEl || !panelEl) return
 
-    // 1) Estado cerrado ANTES del primer paint
     document.documentElement.classList.remove('gw-mobile-open')
     panelEl.removeAttribute('data-open')
     overlayEl.style.opacity = '0'
     overlayEl.style.pointerEvents = 'none'
     panelEl.style.transform = 'translateX(100%)'
 
-    // 2) Marca de hidratación
     document.documentElement.classList.add('gw-hydrated')
 
-    // 3) Animaciones + bindings
     initNavbarAnimations(navEl)
     const timelines = createMobileTimelines({ overlayEl, panelEl })
-    const controls = bindMobileInteractions(navEl, timelines, { overlayEl, panelEl })
+    const controls = bindMobileInteractions(navEl, timelines, {
+      overlayEl,
+      panelEl,
+    })
 
-    // 4) Limpieza
     return () => {
       controls?.dispose?.()
       document.documentElement.classList.remove('gw-mobile-open')
@@ -37,58 +42,110 @@ export default function Navbar() {
     }
   }, [])
 
+  const isActive = path =>
+    location.pathname.toLowerCase() === path.toLowerCase()
+
   return (
     <>
-      <nav className="gw-navbar" ref={navRef} aria-label="GreenWay">
-        <div className="gw-container">
-          <a href="/" className="gw-brand" aria-label="Inicio GreenWay">
-          
-            <img src={logo} alt="Green Way" className="gw-icon" />
-          </a>
+      <nav className='gw-navbar' ref={navRef} aria-label='GreenWay'>
+        <div className='gw-container'>
+          <Link to='/' className='gw-brand' aria-label='Inicio GreenWay'>
+            <img src={logo} alt='Green Way' className='gw-icon' />
+          </Link>
 
-          <div className="gw-menu" role="menubar" aria-label="Principal">
-            <a className="gw-link" href="/" role="menuitem">Home</a>
-            <a className="gw-link" href="/About" role="menuitem">Quienes Somos</a>
-            <a className="gw-link" href="/ComoTrabajamos" role="menuitem">Como Trabajamos</a>
-            <a className="gw-link" href="/ProductosServicios" role="menuitem">Productos y Servivios</a>
-            <span className="gw-underline" aria-hidden="true" />
+          <div className='gw-menu' role='menubar' aria-label='Principal'>
+            <Link
+              to='/'
+              className={`gw-link ${isActive('/') ? 'active' : ''}`}
+              role='menuitem'
+            >
+              Home
+            </Link>
+            <Link
+              to='/about'
+              className={`gw-link ${isActive('/about') ? 'active' : ''}`}
+              role='menuitem'
+            >
+              Quienes Somos
+            </Link>
+            <Link
+              to='/comotrabajamos'
+              className={`gw-link ${
+                isActive('/comotrabajamos') ? 'active' : ''
+              }`}
+              role='menuitem'
+            >
+              Como Trabajamos
+            </Link>
+            <Link
+              to='/productosservicios'
+              className={`gw-link ${
+                isActive('/productosservicios') ? 'active' : ''
+              }`}
+              role='menuitem'
+            >
+              Productos y Servicios
+            </Link>
+            <span className='gw-underline' aria-hidden='true' />
           </div>
 
-          <div className="gw-actions" aria-label="Acciones">
-            <a href="/Contactanos">
-            <button className="gw-cta gw-cta--primary">Contactanos</button>
-          </a>
+          <div className='gw-actions' aria-label='Acciones'>
+            <Link to='/contactanos'>
+              <button className='gw-cta gw-cta--primary'>Contactanos</button>
+            </Link>
           </div>
 
-          <button className="gw-burger" aria-label="Abrir menú" aria-expanded="true" aria-controls="mobile-menu">
-            <span aria-hidden="true"></span>
+          <button
+            className='gw-burger'
+            aria-label='Abrir menú'
+            aria-expanded='true'
+            aria-controls='mobile-menu'
+          >
+            <span aria-hidden='true'></span>
           </button>
         </div>
       </nav>
 
-      {/* Espaciador para que el contenido no quede debajo del nav */}
-      <div className="gw-nav-spacer" />
+      <div className='gw-nav-spacer' />
 
-      {/* Overlay + panel móvil (inician cerrados) */}
-      <div className="gw-overlay" ref={overlayRef} />
+      <div className='gw-overlay' ref={overlayRef} />
       <aside
-        className="gw-mobile"
+        className='gw-mobile'
         ref={panelRef}
-        aria-label="Menú móvil"
-        role="dialog" 
-        aria-modal="true"
+        aria-label='Menú móvil'
+        role='dialog'
+        aria-modal='true'
       >
         <nav style={{ display: 'contents' }}>
-          <a className="movil" href="/">Home</a>
-          <a className="movil" href="/about">Quienes somos</a>
-          <a className="gw-link" href="/ComoTrabajamos" role="menuitem">Como Trabajamos</a>
-          <a className="gw-link" href="/ProductosServicios" role="menuitem">Productos y Servivios</a>
-         
+          <Link to='/' className={`movil ${isActive('/') ? 'active' : ''}`}>
+            Home
+          </Link>
+          <Link
+            to='/about'
+            className={`movil ${isActive('/about') ? 'active' : ''}`}
+          >
+            Quienes somos
+          </Link>
+          <Link
+            to='/comotrabajamos'
+            className={`movil ${isActive('/comotrabajamos') ? 'active' : ''}`}
+          >
+            Como Trabajamos
+          </Link>
+          <Link
+            to='/productosservicios'
+            className={`movil ${
+              isActive('/productosservicios') ? 'active' : ''
+            }`}
+          >
+            Productos y Servicios
+          </Link>
         </nav>
 
-        <div className="gw-mobile-footer">
-         <a href="/Contactanos"> <button className="gw-cta gw-cta--primary">Contactanos</button>
-        </a>
+        <div className='gw-mobile-footer'>
+          <Link to='/contactanos'>
+            <button className='gw-cta gw-cta--primary'>Contactanos</button>
+          </Link>
         </div>
       </aside>
     </>

@@ -1,4 +1,5 @@
 // src/components/Home/Carrusel/Carrusel.jsx
+import { Link } from 'react-router-dom'
 import './Carrusel.css'
 import Carousel from './service.carrusel'
 
@@ -23,14 +24,9 @@ export default function Carrusel() {
               transformar los negocios globales y generar valor económico,
               social y ambiental.
             </div>
-            <a
-              className='seeMore'
-              target='_blank'
-              href='https://tu-sitio.com'
-              rel='noreferrer'
-            >
+            <Link className='seeMore' to='/productosservicios'>
               <button>Ver más</button>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -42,14 +38,9 @@ export default function Carrusel() {
               Conectamos proveedores y compradores confiables, gestionando
               logística y pagos para transacciones seguras a escala global.
             </div>
-            <a
-              className='seeMore'
-              target='_blank'
-              href='https://tu-sitio.com/servicios'
-              rel='noreferrer'
-            >
+            <Link className='seeMore' to='/productosservicios'>
               <button>Ver más</button>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -61,14 +52,9 @@ export default function Carrusel() {
               Proveemos estudios de mercado, precios, demanda y competencia para
               decisiones informadas y reducción de riesgos.
             </div>
-            <a
-              className='seeMore'
-              target='_blank'
-              href='https://tu-sitio.com/inteligencia'
-              rel='noreferrer'
-            >
+            <Link className='seeMore' to='/productosservicios'>
               <button>Ver más</button>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -80,14 +66,9 @@ export default function Carrusel() {
               Estructuramos redes y colaboraciones globales para acelerar la
               internacionalización y el crecimiento sostenible.
             </div>
-            <a
-              className='seeMore'
-              target='_blank'
-              href='https://tu-sitio.com/alianzas'
-              rel='noreferrer'
-            >
+            <Link className='seeMore' to='/productosservicios'>
               <button>Ver más</button>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
