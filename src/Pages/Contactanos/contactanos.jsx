@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useQuienesSomosFX } from '../../Pages/quienesSomos/quienessomos.js'
 import './contactanos.css'
 import Brokerajew from '../../assets/Brokerajew.png'
-import { enviarFormulario } from './contactService.js'
+import { sendContacto } from '../../services/leads.service' // ✅ NUEVO SERVICE (ajusta ruta)
 import Toast from './Toast.jsx'
 
 export default function Contactanos() {
@@ -20,8 +20,17 @@ export default function Contactanos() {
     const formData = new FormData(e.target)
     const data = Object.fromEntries(formData.entries())
 
-    // enviar al backend
-    const respuesta = await enviarFormulario(data)
+    // ✅ payload para el nuevo endpoint
+    const payload = {
+      ...data,
+      source: 'contacto-full',
+      proyecto: 'GreenWay',
+    }
+
+    // ✅ enviar usando el nuevo service (sin cambiar el service)
+    const respuesta = await sendContacto(payload, [], {
+      formId: 'contactoFull',
+    })
     setEnviando(false)
 
     if (respuesta.ok) {
@@ -120,22 +129,6 @@ export default function Contactanos() {
               </div>
             </div>
 
-            {/* Select Feria (origen) */}
-            <div className='field'>
-              <label htmlFor='origen'>Feria</label>
-              <div className='input-wrap'>
-                <span className='i'>🎪</span>
-                <select id='origen' name='origen' defaultValue=''>
-                  <option value='' disabled>
-                    Selecciona ubicación
-                  </option>
-                  <option value='Miami'>Miami</option>
-                  <option value='Cartagena'>Cartagena</option>
-                  <option value='Medellín'>Medellín</option>
-                </select>
-              </div>
-            </div>
-
             {/* Mensaje */}
             <div className='field field-full'>
               <label htmlFor='mensaje'>
@@ -169,7 +162,9 @@ export default function Contactanos() {
           {mensajeSistema && (
             <Toast
               message={mensajeSistema}
-              type={mensajeSistema.includes('éxito') ? 'ok' : 'error'}
+              type={
+                mensajeSistema.toLowerCase().includes('envi') ? 'ok' : 'error'
+              }
               onClose={() => setMensajeSistema('')}
             />
           )}

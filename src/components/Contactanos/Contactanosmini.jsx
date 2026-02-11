@@ -1,15 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './contactanosmini.css'
+import { sendContacto } from '../../services/leads.service.js' // ajusta la ruta
 
 export default function ContactMini() {
-  const handleSubmit = e => {
+  const [enviando, setEnviando] = useState(false)
+  const [mensaje, setMensaje] = useState('')
+
+  const handleSubmit = async e => {
     e.preventDefault()
-    console.log('Mini formulario enviado ✅')
+    setMensaje('')
+    setEnviando(true)
+
+    const formData = new FormData(e.target)
+    const data = Object.fromEntries(formData.entries())
+
+    // payload directo (sin modificar service)
+    const payload = {
+      ...data,
+      source: 'contact-mini',
+      proyecto: 'GreenWay',
+    }
+
+    const respuesta = await sendContacto(payload, [], {
+      formId: 'contactoMini',
+    })
+
+    setEnviando(false)
+
+    if (respuesta.ok) {
+      setMensaje(respuesta.message)
+      e.target.reset()
+    } else {
+      setMensaje(respuesta.message || 'Error al enviar.')
+    }
   }
 
   return (
     <section className='contact-mini' id='contacto-mini'>
-      {/* Fondos decorativos */}
       <div className='cm-blob cm-blob--green' aria-hidden='true' />
       <div className='cm-blob cm-blob--blue' aria-hidden='true' />
 
@@ -51,14 +78,21 @@ export default function ContactMini() {
             />
           </label>
 
-          <button type='submit' className='cm-btn' aria-label='Contactar'>
-            Contactar
+          <button
+            type='submit'
+            className='cm-btn'
+            aria-label='Contactar'
+            disabled={enviando}
+          >
+            {enviando ? 'Enviando...' : 'Contactar'}
             <span className='cm-arrow' aria-hidden='true'>
               →
             </span>
           </button>
 
-          <small className='cm-note'>Respuesta en menos de 24h hábiles.</small>
+          <small className='cm-note'>
+            {mensaje || 'Respuesta en menos de 24h hábiles.'}
+          </small>
         </form>
       </div>
     </section>
